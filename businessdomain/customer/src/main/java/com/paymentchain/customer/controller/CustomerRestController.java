@@ -1,12 +1,12 @@
-package com.japcdev.paymentchain.customer.controller;
+package com.paymentchain.customer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.japcdev.paymentchain.customer.entities.Customer;
-import com.japcdev.paymentchain.customer.repository.CustomerRepository;
+import com.paymentchain.customer.entities.Customer;
+import com.paymentchain.customer.repository.CustomerRepository;
 
 @RestController
 @RequestMapping("/customer")

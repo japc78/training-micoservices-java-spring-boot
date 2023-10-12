@@ -1,4 +1,4 @@
-package com.japcdev.paymentchain.customer.entities;
+package com.paymentchain.customer.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
