@@ -140,6 +140,10 @@ public class CustomerRestController {
 				product.setProductName(productName);
 			});
 
+			// find all transactions that belong this account number.
+			List<?> transactions = getTransactions(customer.get().getIban());
+			customer.get().setTransactions(transactions);
+
 			return new ResponseEntity<>(customer, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -159,5 +163,21 @@ public class CustomerRestController {
 
 		String name = block.get("name").asText();
 		return name;
+	}
+
+
+	private List<?> getTransactions(String accountIban) {
+		WebClient webClient = webClientBuilder.clientConnector(new ReactorClientHttpConnector(httpClient))
+			.baseUrl("http://localhost:8082/transaction")
+			.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+			.build();
+
+		List<?> transactions = webClient.method(HttpMethod.GET).uri(uriBuilder -> uriBuilder
+			.path("/customer/transactions")
+			.queryParam("accountIban", accountIban)
+			.build())
+			.retrieve().bodyToFlux(Object.class).collectList().block();
+
+		return transactions;
 	}
 }
