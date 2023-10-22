@@ -16,6 +16,7 @@
 
 	<modules>
 		<module>eurekaserver</module>
+		<module>adminserver</module>
 	</modules>
 
 	<properties>
