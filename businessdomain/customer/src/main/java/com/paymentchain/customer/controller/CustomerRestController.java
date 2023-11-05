@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,9 @@ public class CustomerRestController {
 
 	@Autowired
 	CustomerRepository customerRepository;
+
+	@Value("${user.role}")
+	private String role;
 
 	private final WebClient.Builder webClientBuilder;
 
@@ -81,6 +85,11 @@ public class CustomerRestController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	@GetMapping("/hello")
+	public ResponseEntity<String> sayHello(){
+		return new ResponseEntity<String>("Hello your role is: " + role, HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping()
