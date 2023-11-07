@@ -16,10 +16,10 @@ spring:
       failFast: true
       #name of base properties config file, before profile
       name: config-client
-      profile: development
+      # profile: development
       #label: latest
       username: admin
       password: qwerty
-      retry: 
+      retry:
         max-attempts: 1
         max-interval: 1000

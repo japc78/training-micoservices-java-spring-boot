@@ -48,7 +48,7 @@ public class TransactionRestController {
 		try {
 			Optional<List<Transaction>> listTransaction = transactionRepository.findByAccountIban(accountIban);
 
-			if (listTransaction.isEmpty()) {
+			if (listTransaction.isPresent()) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 
