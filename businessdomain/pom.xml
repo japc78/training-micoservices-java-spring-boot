@@ -19,6 +19,7 @@
 		<module>customer</module>
 		<module>product</module>
 		<module>transaction</module>
+		<module>common</module>
 	</modules>
 
 	<properties>
